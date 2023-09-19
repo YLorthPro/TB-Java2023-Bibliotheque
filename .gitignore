@@ -2,8 +2,6 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-/misc.xml
-.idea/**/*.xml
 
 ### Eclipse ###
 .apt_generated
