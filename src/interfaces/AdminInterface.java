@@ -91,37 +91,45 @@ public final class AdminInterface extends UserInterface implements fonctionalite
 
     @Override
     public void retirerLivre() {
-        List<Livre> liste = bibliotheque.getAll();
-        for (int i = 0; i < liste.size(); i++) {
-            System.out.println(i + " - " + liste.get(i));
-        }
-        System.out.println("Quel livre voulez vous retirer?");
-        if(bibliotheque.supprimerLivre(liste.get(Tools.demanderNB(0,liste.size()-1))))
-            System.out.println("Livre supprimé");
-        else
-            System.out.println("Suppression impossible");
+        if(!bibliotheque.getAll().isEmpty()){
+            List<Livre> liste = bibliotheque.getAll();
+            for (int i = 0; i < liste.size(); i++) {
+                System.out.println(i + " - " + liste.get(i));
+            }
+            System.out.println("Quel livre voulez vous retirer?");
+            if(bibliotheque.supprimerLivre(liste.get(Tools.demanderNB(0,liste.size()-1))))
+                System.out.println("Livre supprimé");
+            else
+                System.out.println("Suppression impossible");
+        } else
+            System.out.println("Pas de livres");
+
     }
 
     @Override
     public void modifierLivre() {
-        Scanner sc = new Scanner(System.in);
+        if(!bibliotheque.getAll().isEmpty()){
+            Scanner sc = new Scanner(System.in);
 
-        List<Livre> liste = bibliotheque.getAll();
-        for (int i = 0; i < liste.size(); i++) {
-            System.out.println(i + " - " + liste.get(i));
-        }
-        System.out.println("Quel livre voulez vous modifer?");
-        int index = Tools.demanderNB(0,liste.size()-1);
-        System.out.println("Quel est le nouveau titre?");
-        String titre = sc.nextLine();
-        System.out.println("Quel est son auteur?");
-        String auteur = sc.nextLine();
-        System.out.println("Quelle est l'année de publication?");
-        int anneePublication = Tools.demanderNB(0,3000);
+            List<Livre> liste = bibliotheque.getAll();
+            for (int i = 0; i < liste.size(); i++) {
+                System.out.println(i + " - " + liste.get(i));
+            }
+            System.out.println("Quel livre voulez vous modifer?");
+            int index = Tools.demanderNB(0,liste.size()-1);
+            System.out.println("Quel est le nouveau titre?");
+            String titre = sc.nextLine();
+            System.out.println("Quel est son auteur?");
+            String auteur = sc.nextLine();
+            System.out.println("Quelle est l'année de publication?");
+            int anneePublication = Tools.demanderNB(0,3000);
 
-        if(bibliotheque.updateLivre(liste.get(index).getIsbn(), titre, auteur, anneePublication))
-            System.out.println("Livre modifié");
-        else
-            System.out.println("Modification impossible");
+            if(bibliotheque.updateLivre(liste.get(index).getIsbn(), titre, auteur, anneePublication))
+                System.out.println("Livre modifié");
+            else
+                System.out.println("Modification impossible");
+        }else
+            System.out.println("Pas de livres");
+
     }
 }

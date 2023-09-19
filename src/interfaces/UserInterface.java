@@ -69,21 +69,28 @@ public class UserInterface implements fonctionnalitesBase {
         for (int i = 0; i < liste.size(); i++) {
             System.out.println(i + " - " + liste.get(i));
         }
-        System.out.println("Quel livre voulez vous?");
-        bibliotheque.afficherInfo(liste.get(Tools.demanderNB(0,liste.size()-1)).getIsbn());
+        if(liste.isEmpty())
+            System.out.println("Pas de livres");
+        else{
+            System.out.println("Quel livre voulez vous?");
+            bibliotheque.afficherInfo(liste.get(Tools.demanderNB(0,liste.size()-1)).getIsbn());
+        }
     }
 
     @Override
     public void emprunterLivre() {
-        List<Livre> liste = bibliotheque.getAll();
-        for (int i = 0; i < liste.size(); i++) {
-            System.out.println(i + " - " + liste.get(i));
-        }
-        System.out.println("Quel livre voulez vous?");
-        if(bibliotheque.emprunterLivre(bibliotheque.getOne(liste.get(Tools.demanderNB(0,liste.size()-1)).getIsbn()).getIsbn(),user)){
-            System.out.println("Emprunt effectué");
-        } else
-            System.out.println("Emprunt impossible");
+        if(!bibliotheque.listeLivresDispo().isEmpty()){
+            List<Livre> liste = bibliotheque.listeLivresDispo();
+            for (int i = 0; i < liste.size(); i++) {
+                System.out.println(i + " - " + liste.get(i));
+            }
+            System.out.println("Quel livre voulez vous?");
+            if(bibliotheque.emprunterLivre(bibliotheque.getOne(liste.get(Tools.demanderNB(0,liste.size()-1)).getIsbn()).getIsbn(),user)){
+                System.out.println("Emprunt effectué");
+            } else
+                System.out.println("Emprunt impossible");
+        }else
+            System.out.println("Pas de livres");
     }
 
     @Override
@@ -97,6 +104,8 @@ public class UserInterface implements fonctionnalitesBase {
 
     @Override
     public void livresDispo() {
+        if(bibliotheque.listeLivresDispo().isEmpty())
+            System.out.println("Pas de livre disponible");
         bibliotheque.listeLivresDispo().forEach(System.out::println);
     }
 }
