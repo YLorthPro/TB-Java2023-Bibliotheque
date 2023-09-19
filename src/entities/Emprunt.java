@@ -14,16 +14,9 @@ public class Emprunt {
         this.dateEmprunt = dateEmprunt;
     }
 
-    public Livre getLivre() {
-        return livre;
-    }
-
-    public Utilisateur getEmprunteur() {
-        return emprunteur;
-    }
-
-    public LocalDate getDateEmprunt() {
-        return dateEmprunt;
+    @Override
+    public String toString() {
+        return "Emprunt:" + livre.toString() + " - " + emprunteur.toString() + " - " + dateEmprunt.toString();
     }
 
     public LocalDate getDateRetour() {

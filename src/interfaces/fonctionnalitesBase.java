@@ -1,4 +1,4 @@
-package service;
+package interfaces;
 
 public interface fonctionnalitesBase {
     void rechercherLivre();

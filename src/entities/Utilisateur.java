@@ -11,29 +11,26 @@ public class Utilisateur {
     public Utilisateur(String prenom, String nom, String password, UserRole role) {
         this.prenom = prenom;
         this.nom = nom;
-        this.login = prenom.substring(0,2)+nom.substring(0,2);
+        this.login = prenom.substring(0,3)+nom.substring(0,3);
         this.password = password;
         this.role = role;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public String getLogin() {
-        return login;
     }
 
     public UserRole getRole() {
         return role;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    @Override
+    public String toString() {
+        return "Utilisateur: " + nom + " " +prenom;
+    }
+
     public boolean login(String login, String password){
-        return (this.login==login && this.password==password);
+        return (this.login.equals(login) && this.password.equals(password));
     }
 
 

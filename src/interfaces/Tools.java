@@ -1,4 +1,4 @@
-package service;
+package interfaces;
 
 import java.util.Scanner;
 
@@ -48,6 +48,26 @@ public class Tools {
             }
         }while (repeat);
         return choixU;
+    }
+
+    public static String demanderISBN(){
+
+        Scanner sc = new Scanner (System.in);
+        String isbn = "";
+        String regex = "(ISBN(?:[- ]*1[03])?:* )+?((?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}|97[89][0-9]{10}|(?=(?:[0-9]+[- ]){4})[- 0-9]{17})(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X])";
+        boolean entreeOK = false;
+
+        do {
+            isbn = sc.nextLine();
+
+            if(isbn.matches(regex)){
+                isbn = isbn.replaceAll("[^0-9X]", "");
+                entreeOK = true;
+            } else
+                System.out.println("Ce n'est pas un ISBN valide");
+
+        }while(!entreeOK);
+        return isbn;
     }
 
 }

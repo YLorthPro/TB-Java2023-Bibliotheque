@@ -16,18 +16,6 @@ public class Livre {
         this.isbn = isbn;
     }
 
-    public String getTitre() {
-        return titre;
-    }
-
-    public String getAuteur() {
-        return auteur;
-    }
-
-    public int getAnneePublication() {
-        return anneePublication;
-    }
-
     public String getIsbn() {
         return isbn;
     }
