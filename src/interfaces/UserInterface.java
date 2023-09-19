@@ -5,7 +5,6 @@ import entities.Livre;
 import entities.Utilisateur;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class UserInterface implements fonctionnalitesBase {
 
