@@ -48,7 +48,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO{
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next())
-                return Optional.of(new Utilisateur(rs.getLong("id"), rs.getString("prenom"),rs.getString("nom"),null, UserRole.valueOf(rs.getString("role")) )) ;
+                return Optional.of(new Utilisateur(rs.getLong("id"), rs.getString("prenom"),null,null, UserRole.valueOf(rs.getString("role")))) ;
             else
                 return Optional.empty();
 
@@ -77,7 +77,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO{
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next())
-                return Optional.of(new Utilisateur(rs.getLong("id"), rs.getString("prenom"),rs.getString("nom"),null, UserRole.valueOf(rs.getString("role")) )) ;
+                return Optional.of(new Utilisateur(rs.getLong("id"), rs.getString("prenom"),null,null, UserRole.valueOf(rs.getString("role")))) ;
             else
                 return Optional.empty();
 
