@@ -1,4 +1,4 @@
-package interfaces;
+package interfacesUtilisateur;
 
 public interface fonctionalitesAdmin extends fonctionnalitesBase{
     void ajouterLivre();

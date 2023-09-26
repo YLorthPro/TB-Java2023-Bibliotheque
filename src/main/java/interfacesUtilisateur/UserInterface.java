@@ -1,4 +1,4 @@
-package interfaces;
+package interfacesUtilisateur;
 
 import entities.Bibliotheque;
 import entities.Livre;
@@ -85,7 +85,7 @@ public class UserInterface implements fonctionnalitesBase {
                 System.out.println(i + " - " + liste.get(i));
             }
             System.out.println("Quel livre voulez vous?");
-            if(bibliotheque.emprunterLivre(bibliotheque.getOne(liste.get(Tools.demanderNB(0,liste.size()-1)).getIsbn()).getIsbn(),user)){
+            if(bibliotheque.emprunterLivre(bibliotheque.getOne(liste.get(Tools.demanderNB(0,liste.size()-1)).getIsbn()).getIsbn(),user.getId())){
                 System.out.println("Emprunt effectué");
             } else
                 System.out.println("Emprunt impossible");

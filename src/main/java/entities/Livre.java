@@ -4,16 +4,34 @@ import java.util.Objects;
 
 public class Livre {
 
+    private Long id;
     private String titre;
     private String auteur;
     private int anneePublication;
     private String isbn;
 
-    public Livre(String titre, String auteur, int anneePublication, String isbn) {
+    public Livre(Long id, String titre, String auteur, int anneePublication, String isbn) {
+        this.id = id;
         this.titre = titre;
         this.auteur = auteur;
         this.anneePublication = anneePublication;
         this.isbn = isbn;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public String getAuteur() {
+        return auteur;
+    }
+
+    public int getAnneePublication() {
+        return anneePublication;
     }
 
     public String getIsbn() {

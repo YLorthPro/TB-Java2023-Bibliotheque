@@ -1,4 +1,4 @@
-package interfaces;
+package interfacesUtilisateur;
 
 import entities.Bibliotheque;
 import entities.Livre;
@@ -86,7 +86,7 @@ public final class AdminInterface extends UserInterface implements fonctionalite
         int anneePublication = Tools.demanderNB(0,3000);
         System.out.println("Quel est sont ISBN?");
         String isbn = Tools.demanderISBN();
-        bibliotheque.ajouterLivre(new Livre(nom,auteur,anneePublication,isbn));
+        bibliotheque.ajouterLivre(new Livre(0L,nom,auteur,anneePublication,isbn));
     }
 
     @Override
