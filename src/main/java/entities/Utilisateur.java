@@ -7,15 +7,17 @@ public class Utilisateur {
     private String login;
     private String password;
     private UserRole role;
+    private Adresse adresse;
 
 
-    public Utilisateur(Long id, String prenom, String nom, String password, UserRole role) {
-        this.id= id;
+    public Utilisateur(Long id, String prenom, String nom, String login, String password, UserRole role, Adresse adresse) {
+        this.id = id;
         this.prenom = prenom;
         this.nom = nom;
-        this.login = prenom.substring(0,3)+nom.substring(0,3);
+        this.login = login;
         this.password = password;
         this.role = role;
+        this.adresse = adresse;
     }
 
     public Long getId() {
@@ -40,6 +42,10 @@ public class Utilisateur {
 
     public String getLogin() {
         return login;
+    }
+
+    public Adresse getAdresse() {
+        return adresse;
     }
 
     @Override

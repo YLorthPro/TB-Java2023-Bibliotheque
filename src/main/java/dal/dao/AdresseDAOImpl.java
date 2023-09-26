@@ -1,8 +1,7 @@
 package dal.dao;
 
 import dal.config.ConnectionFactory;
-import entities.UserRole;
-import entities.Utilisateur;
+import entities.Adresse;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,19 +9,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class UtilisateurDAOImpl implements UtilisateurDAO{
+public class AdresseDAOImpl implements AdresseDAO{
     @Override
-    public boolean create(Utilisateur entity) {
-        String sql = "INSERT INTO Utilisateur VALUES (DEFAULT, ?, ?, ?, ?, ?)";
+    public boolean create(Adresse entity) {
+        String sql = "INSERT INTO adresse VALUES (DEFAULT, ?, ?, ?, ?)";
 
         try(Connection connection = ConnectionFactory.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
 
-            preparedStatement.setString(1,entity.getPrenom());
-            preparedStatement.setString(2,entity.getNom());
-            preparedStatement.setString(3,entity.getLogin());
-            preparedStatement.setString(4,entity.getPassword());
-            preparedStatement.setString(5,entity.getRole().name());
+            preparedStatement.setString(1,entity.getNumero());
+            preparedStatement.setString(2,entity.getRue());
+            preparedStatement.setString(3,entity.getCodePostal());
+            preparedStatement.setString(4,entity.getVille());
 
             if(preparedStatement.executeUpdate()>0)
                 return true;
@@ -36,9 +34,8 @@ public class UtilisateurDAOImpl implements UtilisateurDAO{
     }
 
     @Override
-    public Optional<Utilisateur> getOne(Long id) {
-
-        String sql = "SELECT * from Utilisateur WHERE id = ?";
+    public Optional<Adresse> getOne(Long id) {
+        String sql = "SELECT * from Adresse WHERE id = ?";
 
         try(Connection connection = ConnectionFactory.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
@@ -48,7 +45,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO{
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next())
-                return Optional.of(new Utilisateur(rs.getLong("id"), rs.getString("prenom"),null,rs.getString("login"),null, UserRole.valueOf(rs.getString("role")),null)) ;
+                return Optional.of(new Adresse(rs.getLong("id"), rs.getString("numero"), rs.getString("rue"), rs.getString("codePostal"),rs.getString("ville")));
             else
                 return Optional.empty();
 
@@ -57,36 +54,30 @@ public class UtilisateurDAOImpl implements UtilisateurDAO{
         }catch (SQLException ex){
             throw new RuntimeException("User error: ",ex);
         }
-
     }
 
     @Override
-    public Optional<Utilisateur> login(String login, String password) {
-        String sql = """
-                        SELECT id, prenom, nom, login, role
-                        FROM utilisateur
-                        WHERE login = ? AND password = ?;
-                """;
+    public Optional<Adresse> exists(Adresse adresse) {
+        String sql = "SELECT * from Adresse WHERE numero = ? AND rue = ? AND codePostal = ? AND  ville = ?";
 
         try(Connection connection = ConnectionFactory.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
 
-            preparedStatement.setString(1,login);
-            preparedStatement.setString(2,password);
+            preparedStatement.setString(1, adresse.getNumero());
+            preparedStatement.setString(2, adresse.getRue());
+            preparedStatement.setString(3, adresse.getCodePostal());
+            preparedStatement.setString(4, adresse.getVille());
 
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next())
-                return Optional.of(new Utilisateur(rs.getLong("id"), rs.getString("prenom"),null,null, null, UserRole.valueOf(rs.getString("role")),null)) ;
+                return Optional.of(new Adresse(rs.getLong("id"), rs.getString("numero"), rs.getString("rue"), rs.getString("codePostal"),rs.getString("ville")));
             else
                 return Optional.empty();
 
-
-
         }catch (SQLException ex){
-            throw new RuntimeException("User error: ",ex);
+            ex.printStackTrace();
+            return Optional.empty();
         }
-
-
     }
 }

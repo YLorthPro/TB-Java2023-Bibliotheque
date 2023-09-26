@@ -2,6 +2,7 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/main/java/dal/config/DataInit.java" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/dal/dao/AdresseDAOImpl.java" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/dal/dao/EmpruntDAOImpl.java" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/dal/dao/LivreDAOImpl.java" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/dal/dao/UtilisateurDAOImpl.java" dialect="PostgreSQL" />
