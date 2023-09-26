@@ -84,7 +84,7 @@ public final class AdminInterface extends UserInterface implements fonctionalite
         String auteur = sc.nextLine();
         System.out.println("Quel est son année de publication?");
         int anneePublication = Tools.demanderNB(0,3000);
-        System.out.println("Quel est sont ISBN?");
+        System.out.println("Quel est son ISBN?");
         String isbn = Tools.demanderISBN();
         bibliotheque.ajouterLivre(new Livre(0L,nom,auteur,anneePublication,isbn));
     }

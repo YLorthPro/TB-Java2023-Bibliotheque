@@ -1,6 +1,7 @@
 package interfacesUtilisateur;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Tools {
 
@@ -60,7 +61,7 @@ public class Tools {
         do {
             isbn = sc.nextLine();
 
-            if(isbn.matches(regex)){
+            if(Pattern.matches(regex,isbn)){
                 isbn = isbn.replaceAll("[^0-9X]", "");
                 entreeOK = true;
             } else
